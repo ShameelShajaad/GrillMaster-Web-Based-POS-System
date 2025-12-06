@@ -7,20 +7,47 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body>
-
+  <body class="bg-[#221011] text-white">
     <!-- NAVBAR -->
 
-    <header class="flex justify-between items-center px-6  sticky top-0">
-        <div class="flex items-center gap-2 mt-2">
-            <img src="assets/images/logo/grill_master_logo.png" alt="grill_master_logo" class="h-25 ml-2">
-            <h1 class="text-2xl font-bold">GrillMaster</h1>
-        </div>
-        <div class="flex gap-6">
-            <a href="index.html">Home</a>
-            <a href="placeorder.html">New Order</a>
-        </div>
+    <header class="flex justify-between items-center px-6 py-4 sticky top-0">
+      <div class="flex items-center gap-3">
+        <img
+          src="assets/images/grill_master_logo.png"
+          alt="grill_master_logo"
+          class="h-20"
+        />
+        <h1 class="text-xl font-bold">GrillMaster</h1>
+      </div>
+      <nav class="flex gap-8 text-white/80">
+        <a class="hover:text-white transition" href="index.html">Home</a>
+        <a class="hover:text-white transition" href="placeorder.html"
+          >New Order</a
+        >
+      </nav>
     </header>
+    <section
+      class="relative flex flex-col items-center justify-center text-center py-24 px-4 bg-cover bg-center"
+      style="
+        background-image: linear-gradient(
+            rgba(10, 2, 3, 0.6),
+            rgba(10, 2, 3, 0.85)
+          ),
+          url('assets/images/Classic_Beef_Burger.png');
+      "
+    >
+      <h1 class="text-4xl md:text-5xl font-black mb-4">
+        Welcome to GrillMaster POS
+      </h1>
+      <p class="text-white/80 text-lg mb-8">Ready to take the next order?</p>
+
+      <a
+        href="placeorder.html"
+        class="bg-[#f1222d] text-white font-bold px-6 py-3 rounded-lg hover:scale-105 active:scale-95 transition-transform"
+      >
+        Start New Order
+      </a>
+    </section>
     <script src="assets/js/app.js"></script>
   </body>
 </html>
