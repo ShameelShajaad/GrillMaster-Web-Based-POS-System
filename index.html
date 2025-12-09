@@ -32,9 +32,8 @@
           src="assets/svg/menu_icon.svg"
           alt="menu_icon"
           id="menuIcon"
-          class="h-8 w-8"
+          class="h-8 w-8 filter brightness-0 invert"
         />
-
       </button>
 
       <nav
@@ -87,7 +86,7 @@
           class="flex flex-1 cursor-pointer flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
         >
           <span
-            class="material-symbols-outlined text-[#FFCC00]"
+            class="text-[#FFCC00]"
             style="font-size: 28px"
             >Orders</span
           >
@@ -103,7 +102,7 @@
           class="flex flex-1 cursor-pointer flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-white/20 hover:bg-white/10"
         >
           <span
-            class="material-symbols-outlined text-[#FFCC00]"
+            class="text-[#FFCC00]"
             style="font-size: 28px"
             >Menu Book</span
           >
@@ -118,6 +117,68 @@
         </div>
       </div>
     </section>
+
+    <!-- FOOTER -->
+
+    <footer
+      class="flex flex-col items-center gap-4 py-6 bg-[#151313] border-t border-gray-700"
+    >
+      <!-- SOCIAL LINKS -->
+
+      <div class="flex gap-6">
+        <a
+          href="https://www.instagram.com/shameel_shajaad/"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/instagram.svg"
+            alt="Instagram"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://web.facebook.com/profile.php?id=61582577528512"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/facebook.svg"
+            alt="Facebook"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://github.com/ShameelShajaad"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/github.svg"
+            alt="GitHub"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/shameel-shajaad/"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/linkedin.svg"
+            alt="LinkedIn"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+      </div>
+
+      <p class="text-gray-400 text-sm">
+        © 2025 Developed by <span class="font-semibold">Shameel Shajaad</span>
+      </p>
+    </footer>
     <script src="assets/js/app.js"></script>
   </body>
 </html>
