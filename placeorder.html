@@ -74,22 +74,62 @@
       />
     </div>
 
-    <div class="flex gap-10 px-7 pt-6 font-bold border-b border-gray-700">
+    <div class="flex gap-10 px-7 pt-6 pb-3 font-bold border-b border-gray-700">
       <p
         class="category-tab text-yellow-400 border-b-2 border-yellow-400 cursor-pointer"
+        data-tab="burgers"
       >
         Burgers
       </p>
       <p
-        class="category-tab text-white border-b-2 border-transparent cursor-pointer"
+        class="category-tab text-white border-b-2 border-transparent cursor-pointer hover:text-yellow-400 hover:border-yellow-400 transition-all"
+        data-tab="fries"
       >
         Fries
       </p>
+
       <p
-        class="category-tab text-white border-b-2 border-transparent cursor-pointer"
+        class="category-tab text-white border-b-2 border-transparent cursor-pointer hover:text-yellow-400 hover:border-yellow-400 transition-all"
+        data-tab="fries"
       >
         Drinks
       </p>
+    </div>
+
+    <div class="px-6 py-4">
+      <div
+        id="burgers"
+        class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <div
+          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
+        >
+          <div
+            class="relative w-full h-60 md:h-70 lg:h-74 rounded-lg overflow-hidden"
+          >
+            <img
+              src="assets/images/Classic_Beef_Burger.png"
+              alt="Classic Beef Burger"
+              class="w-full h-full object-cover"
+            />
+            <button
+              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
+            >
+              <img
+                src="assets/svg/add_to_cart.svg"
+                alt="add_to_cart_icon"
+                class="w-5 h-5"
+              />
+            </button>
+          </div>
+
+          <p class="text-white font-semibold text-lg text-center">
+            Classic Beef Burger
+          </p>
+          <p class="text-gray-400 text-sm text-center">LKR 1,200</p>
+        </div>
+
+        
     </div>
 
     <!-- FOOTER -->
