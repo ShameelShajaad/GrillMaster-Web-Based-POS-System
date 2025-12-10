@@ -82,6 +82,8 @@ function updateCart(btn) {
   renderCart();
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
 cartItems = document.getElementById("cartItems");
 
 function renderCart() {
@@ -92,20 +94,28 @@ function renderCart() {
       "p-2 border-b border-gray-700 flex justify-between items-center";
 
     cartItem.innerHTML = `
-      <span class="flex-1 font-semibold truncate text-[12px] md:text-[18px] lg:text-xl">${item.name}</span>
+      <span class="flex-1 font-semibold truncate text-[12px] md:text-[18px] lg:text-xl">${
+        item.name
+      }</span>
         <div class="flex items-center gap-2 w-20 justify-center">
-          <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 items-center justify-center" data-id="${item.id}" data-action="decrease">
+          <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 items-center justify-center" data-id="${
+            item.id
+          }" data-action="decrease">
             <img src="assets/svg/dash-circle.svg" alt="minus" class="w-full h-full filter brightness-0 invert text-[12px] md:text-xl lg:text-xl"/>
           </button>
           <span class="text-center">${item.quantity}</span>
-            <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6  items-center justify-center" data-id="${item.id}" data-action="increase">
+            <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6  items-center justify-center" data-id="${
+              item.id
+            }" data-action="increase">
               <img src="assets/svg/plus-circle.svg" alt="plus" class="w-full h-full filter brightness-0 invert"/>
             </button>
         </div>
       <span class="font-semibold w-24 text-right pr-2 text-[15px] md:text-[16px] lg:text-[16px]">LKR ${(
         item.price * item.quantity
       ).toLocaleString()}</span>
-      <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6" data-id="${item.id}" data-action="delete">
+      <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6" data-id="${
+        item.id
+      }" data-action="delete">
         <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
       </button>
       `;
@@ -153,4 +163,21 @@ document.addEventListener("click", (e) => {
 
 cartPanel.addEventListener("click", (e) => {
   e.stopPropagation();
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+
+let downloadPdfBtn = document.getElementById("downloadPdfBtn");
+let completeOrderBtn = document.getElementById("completeOrderBtn");
+
+downloadPdfBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+  }
+});
+
+completeOrderBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+  }
 });
