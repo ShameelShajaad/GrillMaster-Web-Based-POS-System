@@ -90,14 +90,63 @@ function updateCart(btn) {
 function renderCart() {
   cartPanel.innerHTML = `<h2 class="text-xl font-bold mb-4 text-center text-yellow-400">Your Cart</h2>`;
 
-  cart.forEach((item) => {
+  cart.forEach((item, index) => {
     let div = document.createElement("div");
     div.className =
-      "p-2 border-b border-gray-700 flex justify-between text-white";
+      "p-2 border-b border-gray-700 flex justify-between text-white items-center";
     div.innerHTML = `
-    <span class="flex items-center font-semibold">${item.name} ('') ${item.quantity}</span>
-    <span class="font-bold">LKR ${item.price * item.quantity}</span>
-    `;
+      <span class="flex-1 font-semibold truncate">${item.name}</span>
+        <div class="flex items-center gap-2 w-20 justify-center">
+          <button class="w-6 h-6" data-id="${item.id}" data-action="decrease">
+            <img src="assets/svg/dash-circle.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+          </button>
+          <span>${item.quantity}</span>
+            <button class="w-6 h-6" data-id="${item.id}" data-action="increase">
+              <img src="assets/svg/plus-circle.svg" alt="plus" class="w-full h-full filter brightness-0 invert"/>
+            </button>
+        </div>
+      <span class="font-semibold w-24 text-right">LKR ${
+        item.price * item.quantity
+      }</span>
+      <button class="w-6 h-6" data-id="${item.id}" data-action="delete">
+        <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+      `;
     cartPanel.appendChild(div);
   });
+
+  cartPanel.querySelectorAll("button[data-action]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let id = btn.dataset.id;
+      let action = btn.dataset.action;
+      let itemIndex = cart.findIndex((i) => i.id === id);
+
+      if (action === "increase") {
+        cart[itemIndex].quantity++;
+      } else if (action === "decrease") {
+        if (cart[itemIndex].quantity > 1) {
+          cart[itemIndex].quantity--;
+        } else {
+          cart.splice(itemIndex, 1);
+        }
+      }
+
+      renderCart();
+      updateCartCount();
+    });
+  });
 }
+
+function updateCartCount() {
+  let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document
+    .querySelectorAll(".cartCount")
+    .forEach((no) => (no.textContent = totalCount));
+}
+
+document.addEventListener("click", (e) => {
+  if (cartPanel.contains(e.target) || e.target.closest(".cartBtn")) {
+    return;
+  }
+
+  cartPanel.classList.add("hidden");
+});
