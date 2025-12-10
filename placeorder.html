@@ -508,12 +508,32 @@
     <!-- ////////////////////////////////////////////////////////// -->
 
     <div
-      class="fixed py-30 top-0 right-0 w-95 md:w-130 lg:w-150 h-160 bg-[#2C2C2C] shadow-lg p-4 overflow-y-auto border-x-4 border-b-4 border-yellow-400"
+      class="hidden fixed py-30 top-0 right-0 w-95 md:w-130 lg:w-150 h-160 bg-[#2C2C2C] shadow-lg p-4 overflow-y-auto border-x-4 border-b-4 border-yellow-400"
       id="cartPanel"
     >
-      <h2 class="text-xl font-bold mb-4 text-center text-yellow-400">
+      <h2
+        class="text-xl font-bold mb-4 text-center text-yellow-400 border-b border-white pb-2"
+      >
         Your Cart
       </h2>
+
+      <div
+        id="cartItems"
+        class="flex-1 overflow-y-auto flex flex-col gap-2 p-2"
+      ></div>
+
+      <div class="mt-2 flex flex-col gap-2">
+        <button
+          class="bg-yellow-400 text-black py-2 rounded hover:bg-yellow-500 transition-colors"
+        >
+          Download as PDF
+        </button>
+        <button
+          class="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition-colors"
+        >
+          Complete Order
+        </button>
+      </div>
     </div>
 
     <!-- ////////////////////////////////////////////////////////// -->

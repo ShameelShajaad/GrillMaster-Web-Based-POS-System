@@ -82,31 +82,34 @@ function updateCart(btn) {
   renderCart();
 }
 
-function renderCart() {
-  cartPanel.innerHTML = `<h2 class="text-xl font-bold mb-4 text-center text-yellow-400">Your Cart</h2>`;
+cartItems = document.getElementById("cartItems");
 
+function renderCart() {
+  cartItems.innerHTML = "";
   cart.forEach((item, index) => {
-    let div = document.createElement("div");
-    div.className =
-      "p-2 border-b border-gray-700 flex justify-between text-white items-center";
-    div.innerHTML = `
-      <span class="flex-1 font-semibold truncate">${item.name}</span>
+    let cartItem = document.createElement("div");
+    cartItem.className =
+      "p-2 border-b border-gray-700 flex justify-between items-center";
+
+    cartItem.innerHTML = `
+      <span class="flex-1 font-semibold truncate text-[12px] md:text-[18px] lg:text-xl">${item.name}</span>
         <div class="flex items-center gap-2 w-20 justify-center">
-          <button class="w-6 h-6" data-id="${item.id}" data-action="decrease">
-            <img src="assets/svg/dash-circle.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+          <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6 items-center justify-center" data-id="${item.id}" data-action="decrease">
+            <img src="assets/svg/dash-circle.svg" alt="minus" class="w-full h-full filter brightness-0 invert text-[12px] md:text-xl lg:text-xl"/>
           </button>
-          <span>${item.quantity}</span>
-            <button class="w-6 h-6" data-id="${item.id}" data-action="increase">
+          <span class="text-center">${item.quantity}</span>
+            <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6  items-center justify-center" data-id="${item.id}" data-action="increase">
               <img src="assets/svg/plus-circle.svg" alt="plus" class="w-full h-full filter brightness-0 invert"/>
             </button>
         </div>
-      <span class="font-semibold w-24 text-right">LKR ${
+      <span class="font-semibold w-24 text-right pr-2 text-[15px] md:text-[16px] lg:text-[16px]">LKR ${(
         item.price * item.quantity
-      }</span>
-      <button class="w-6 h-6" data-id="${item.id}" data-action="delete">
+      ).toLocaleString()}</span>
+      <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6" data-id="${item.id}" data-action="delete">
         <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+      </button>
       `;
-    cartPanel.appendChild(div);
+    cartItems.appendChild(cartItem);
   });
 
   cartPanel.querySelectorAll("button[data-action]").forEach((btn) => {
@@ -123,6 +126,8 @@ function renderCart() {
         } else {
           cart.splice(itemIndex, 1);
         }
+      } else if (action === "delete") {
+        cart.splice(itemIndex, 1);
       }
 
       renderCart();
