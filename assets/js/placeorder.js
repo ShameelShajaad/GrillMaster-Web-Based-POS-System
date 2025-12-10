@@ -1,5 +1,5 @@
-const tabs = document.querySelectorAll(".category-tab");
-const contents = document.querySelectorAll(".menu-content");
+let tabs = document.querySelectorAll(".category-tab");
+let contents = document.querySelectorAll(".menu-content");
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
@@ -13,5 +13,28 @@ tabs.forEach((tab) => {
 
     contents.forEach((c) => c.classList.add("hidden"));
     document.getElementById(tab.dataset.tab).classList.remove("hidden");
+  });
+});
+
+// CART COUNT
+
+let cartCount = 0;
+
+let cartCountNo = document.querySelectorAll("#cartCount");
+let addToCartButtons = document.querySelectorAll(".menu-content button");
+
+// ADD TO CART CLICK
+addToCartButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    cartCount++;
+
+    // update ALL cart counters (mobile + desktop)
+    cartCountNo.forEach((no) => {
+      no.textContent = cartCount;
+    });
+
+    // ANIMATION
+    btn.classList.add("scale-110");
+    setTimeout(() => btn.classList.remove("scale-110"), 150);
   });
 });
