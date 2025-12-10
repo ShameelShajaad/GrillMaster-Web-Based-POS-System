@@ -31,6 +31,7 @@ let addToCartButtons = document.querySelectorAll(".menu-content button");
 addToCartButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     cartCount++;
+    updateCart(btn)
 
     // update ALL cart counters (mobile + desktop)
     cartCountNo.forEach((no) => {
@@ -57,3 +58,11 @@ cartIcon.forEach((icon) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 let cart = [];
+
+function updateCart(btn){
+  let id=btn.dataset.id
+  let name=btn.dataset.name
+  let price=btn.dataset.price
+
+  console.log(id+" "+name+" "+price);
+}
