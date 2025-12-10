@@ -1,3 +1,6 @@
+console.log("homepage js loaded!");
+
+
 const menuBtn = document.getElementById("menuBtn");
 const menuNav = document.getElementById("mobileMenu");
 const menuIcon = document.getElementById("menuIcon");
