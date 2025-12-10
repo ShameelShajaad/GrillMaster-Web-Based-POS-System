@@ -150,3 +150,7 @@ document.addEventListener("click", (e) => {
 
   cartPanel.classList.add("hidden");
 });
+
+cartPanel.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
