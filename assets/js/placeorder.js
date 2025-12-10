@@ -32,13 +32,8 @@ let addToCartButtons = document.querySelectorAll(
 // ADD TO CART CLICK
 addToCartButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    cartCount++;
     updateCart(btn);
-
-    // update ALL cart counters (mobile + desktop)
-    cartCountNo.forEach((no) => {
-      no.textContent = cartCount;
-    });
+    updateCartCount();
 
     // ANIMATION
     btn.classList.add("scale-110");
