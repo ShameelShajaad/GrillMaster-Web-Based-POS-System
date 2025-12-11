@@ -69,6 +69,16 @@
           class="hover:text-white text-white/80 transition py-2"
           >New Order</a
         >
+        <a
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
+          href="manageorder.html"
+          >Manage Items</a
+        >
+        <a
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
+          href="orders.html"
+          >Order History</a
+        >
 
         <!-- CART BUTTON (DESKTOP) -->
         <button class="relative hidden md:block cartBtn">
@@ -562,9 +572,36 @@
 
     <!-- ////////////////////////////////////////////////////////// -->
 
+    <div
+      id="customerPopup"
+      class="fixed inset-0 bg-black/60 flex items-center justify-center"
+    >
+      <div class="bg-white text-black p-6 rounded-lg w-80">
+        <h2 class="text-xl font-bold mb-4">Customer Details</h2>
 
-    
+        <input
+          id="custName"
+          type="text"
+          placeholder="Customer Name"
+          class="w-full border p-2 mb-2"
+        />
+        <input
+          id="custPhone"
+          type="text"
+          placeholder="Phone Number"
+          class="w-full border p-2 mb-4"
+        />
 
+        <button
+          id="saveCustomer"
+          class="bg-red-600 text-white w-full py-2 rounded"
+        >
+          Start Order
+        </button>
+      </div>
+    </div>
+
+    <!-- ////////////////////////////////////////////////////////// -->
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/placeorder.js"></script>

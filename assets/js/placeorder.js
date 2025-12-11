@@ -180,12 +180,57 @@ completeOrderBtn.addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Cart is empty");
   } else {
-    cart.length = 0;
+    orderCompleted();
     renderCart();
     updateCartCount();
-    alert("Order Completed")
-    cartPanel.classList.add("hidden")
+    alert("Order Completed");
+    cartPanel.classList.add("hidden");
   }
 });
 
+////////////////////////////////////////////////////////////////////////////////////
 
+let cusName;
+let cusPhone;
+let popup;
+
+document.addEventListener("DOMContentLoaded", () => {
+  popup = document.getElementById("customerPopup");
+  let saveBtn = document.getElementById("saveCustomer");
+
+  popup.style.display = "flex";
+
+  saveBtn.onclick = () => {
+    cusName = document.getElementById("custName").value;
+    cusPhone = document.getElementById("custPhone").value;
+
+    if (!cusName || !cusPhone) {
+      alert("Please enter customer details!");
+      return;
+    }
+    popup.style.display = "none";
+  };
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+
+let completedOrders = JSON.parse(localStorage.getItem("completedOrders")) || [];
+
+function orderCompleted() {
+  let order = {
+    customerName: cusName,
+    customerPhone: cusPhone,
+    items: [...cart],
+    date: new Date().toLocaleDateString(),
+  };
+  console.log(order);
+
+  completedOrders.push(order);
+  cart.length = 0;
+  cusName = "";
+  cusPhone = "";
+
+  localStorage.setItem("completedOrders", JSON.stringify(completedOrders));
+
+  popup.style.display = "flex";
+}
