@@ -167,17 +167,25 @@ cartPanel.addEventListener("click", (e) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-let downloadPdfBtn = document.getElementById("downloadPdfBtn");
+// let downloadPdfBtn = document.getElementById("downloadPdfBtn");
 let completeOrderBtn = document.getElementById("completeOrderBtn");
 
-downloadPdfBtn.addEventListener("click", () => {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-  }
-});
+// downloadPdfBtn.addEventListener("click", () => {
+//   if (cart.length === 0) {
+//     alert("Cart is empty");
+//   }
+// });
 
 completeOrderBtn.addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Cart is empty");
+  } else {
+    cart.length = 0;
+    renderCart();
+    updateCartCount();
+    alert("Order Completed")
+    cartPanel.classList.add("hidden")
   }
 });
+
+

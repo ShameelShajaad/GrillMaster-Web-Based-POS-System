@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="bg-[#221011] text-white">
+    <!-- HEADER / NAVBAR -->
+
+    <header
+      class="relative z-50 flex justify-between items-center px-6 py-4 sticky top-0 bg-[#221011]"
+    >
+      <div class="flex items-center gap-3">
+        <a href="index.html">
+          <img
+            src="assets/images/grill_master_logo.png"
+            alt="grill_master_logo"
+            class="h-20"
+          />
+        </a>
+        <h1 class="text-xl font-bold">GrillMaster</h1>
+      </div>
+
+      <button
+        id="menuBtn"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+        class="md:hidden text-white focus:outline-none z-60"
+      >
+        <img
+          src="assets/svg/menu_icon.svg"
+          alt="menu_icon"
+          id="menuIcon"
+          class="h-8 w-8 filter brightness-0 invert"
+        />
+      </button>
+
+      <nav
+        id="mobileMenu"
+        class="absolute md:static left-0 top-full w-full md:w-auto bg-[#221011] md:bg-transparent hidden md:flex flex-col md:flex-row items-center gap-6 px-6 py-4 md:p-0 transition-all duration-300 ease-in-out z-40 transform"
+      >
+        <a
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
+          href="index.html"
+          >Home</a
+        >
+        <a
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
+          href="placeorder.html"
+          >New Order</a
+        >
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+
+    
+
+    <!-- FOOTER -->
+
+    <footer
+      class="flex flex-col items-center gap-4 py-6 bg-[#151313] border-t border-gray-700"
+    >
+      <!-- SOCIAL LINKS -->
+
+      <div class="flex gap-6">
+        <a
+          href="https://www.instagram.com/shameel_shajaad/"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/instagram.svg"
+            alt="Instagram"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://web.facebook.com/profile.php?id=61582577528512"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/facebook.svg"
+            alt="Facebook"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://github.com/ShameelShajaad"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/github.svg"
+            alt="GitHub"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/shameel-shajaad/"
+          target="_blank"
+          class="hover:scale-110 transition-transform"
+        >
+          <img
+            src="assets/svg/linkedin.svg"
+            alt="LinkedIn"
+            class="w-6 h-6 social_icon filter brightness-0 invert"
+          />
+        </a>
+      </div>
+
+      <p class="text-gray-400 text-sm">
+        © 2025 Developed by <span class="font-semibold">Shameel Shajaad</span>
+      </p>
+    </footer>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/orders.js"></script>
+  </body>
+</html>

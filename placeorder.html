@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -521,18 +522,26 @@
         id="cartItems"
         class="flex-1 overflow-y-auto flex flex-col gap-2 p-2"
       ></div>
-      <br>
+      <br />
       <div class="mt-2 flex flex-col gap-2">
-        <div class="flex items-center justify-center gap-30 md:gap-50 lg:gap-50">
-          <h3 class="text-[14px] md:text-[18px] lg:text-xl font-semibold">Total</h3>
-          <h3 class="text-[14px] md:text-[18px] lg:text-xl font-semibold pl-4 md:pl-10 lg:pl-30">LKR 0</h3>
+        <div
+          class="flex items-center justify-center gap-30 md:gap-50 lg:gap-50"
+        >
+          <h3 class="text-[14px] md:text-[18px] lg:text-xl font-semibold">
+            Total
+          </h3>
+          <h3
+            class="text-[14px] md:text-[18px] lg:text-xl font-semibold pl-4 md:pl-10 lg:pl-30"
+          >
+            LKR 0
+          </h3>
         </div>
-        <button
+        <!-- <button
           class="bg-yellow-400 text-black py-2 rounded hover:bg-yellow-500 transition-colors"
           id="downloadPdfBtn"
         >
           Download as PDF
-        </button>
+        </button> -->
         <button
           class="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition-colors"
           id="completeOrderBtn"
@@ -543,6 +552,19 @@
     </div>
 
     <!-- ////////////////////////////////////////////////////////// -->
+
+    <!-- BILL SECTION -->
+
+    <!-- <div id="bill">
+      <img src="assets/images/grill_master_logo.png">
+      <h2>GrillMaster POS Bill</h2>
+    </div> -->
+
+    <!-- ////////////////////////////////////////////////////////// -->
+
+
+    
+
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/placeorder.js"></script>
