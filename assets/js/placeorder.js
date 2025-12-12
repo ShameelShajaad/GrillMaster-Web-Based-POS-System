@@ -116,7 +116,7 @@ function renderCart() {
       <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6" data-id="${
         item.id
       }" data-action="delete">
-        <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+        <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert" style="filter: invert(65%) sepia(62%) saturate(7475%) hue-rotate(336deg) brightness(97%) contrast(93%); "/>
       </button>
       `;
     cartItems.appendChild(cartItem);
@@ -226,11 +226,11 @@ function orderCompleted() {
   console.log(order);
 
   completedOrders.push(order);
-  cart.length = 0;
-  cusName = "";
-  cusPhone = "";
 
   localStorage.setItem("completedOrders", JSON.stringify(completedOrders));
 
+  cart.length = 0;
+  cusName = "";
+  cusPhone = "";
   popup.style.display = "flex";
 }

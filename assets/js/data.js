@@ -1,3 +1,5 @@
+console.log("data js loaded!");
+
 if (!localStorage.getItem("menuItems")) {
   const defaultMenu = [
     {
