@@ -3,6 +3,12 @@ console.log("manageorder js loaded!");
 let menuItems = JSON.parse(localStorage.getItem("menuItems")) || [];
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadAllItems();
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+
+function loadAllItems() {
   let container = document.getElementById("burgers");
 
   container.innerHTML = "";
@@ -56,4 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container.appendChild(div);
   });
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+let tabs = document.querySelectorAll(".category-tab");
+let contents = document.querySelectorAll(".menu-content");
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((tab) => {
+      tab.classList.remove("bg-white");
+      tab.classList.add("bg-[#36E27B]");
+    });
+
+    tab.classList.remove("bg-[#36E27B]");
+    tab.classList.add("bg-white");
+
+    displayItems(tab.dataset.tab);
+  });
 });
+
+////////////////////////////////////////////////////////////////////////////////////
+
+function displayItems(category) {}
