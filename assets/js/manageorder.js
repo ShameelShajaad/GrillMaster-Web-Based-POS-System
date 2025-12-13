@@ -175,7 +175,11 @@ function deleteItem(itemName, btn) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-function editItem(itemName, btn) {
+let tempItemName;
+
+function editItem(ItemName, btn) {
+  tempItemName = ItemName;
+
   let container = document.getElementById("editItemPopup");
   container.innerHTML = "";
 
@@ -199,8 +203,8 @@ function editItem(itemName, btn) {
     />
 
     <button
-      id="saveCustomer"
-      class="bg-[#36E27B] text-black font-semibold w-full py-2 rounded"
+    onclick="editBtn()"
+      class="bg-[#36E27B] text-black font-semibold w-full py-2 rounded hover:bg-white hover:text-black transition-all"
     >
       Edit
     </button>
@@ -209,7 +213,52 @@ function editItem(itemName, btn) {
   container.appendChild(div);
   container.style.display = "flex";
 
-  
+  let itemName = document.getElementById("itemName");
+  let itemPrice = document.getElementById("itemPrice");
+
+  menuItems.forEach((menuItem) => {
+    if (menuItem.name === ItemName) {
+      itemName.value = ItemName;
+      itemPrice.value = menuItem.price;
+    }
+  });
+
+  container.addEventListener("click", (e) => {
+    if (e.target === container) {
+      container.style.display = "none";
+    }
+  });
+}
+
+function editBtn() {
+  let itemName = document.getElementById("itemName");
+  let itemPrice = document.getElementById("itemPrice");
+
+  let name = itemName.value;
+  let price = itemPrice.value;
+
+  if (!name || !price) {
+    alert("Item Name or Item Price field is empty");
+    return;
+  } else if (/\d/.test(name)) {
+    alert("Item Name could not contain a number");
+  } else if (/[a-zA-Z]/.test(price) || /[^0-9.+-]/.test(price)) {
+    alert("Item Price should contain only numbers");
+  } else {
+    menuItems.forEach((menuItem) => {
+      if (menuItem.name === tempItemName) {
+        menuItem.name = itemName.value;
+        menuItem.price = parseInt(itemPrice.value);
+      }
+    });
+
+    localStorage.setItem("menuItems", JSON.stringify(menuItems));
+    loadAllItems();
+
+    document.getElementById("editItemPopup").style.display = "none";
+
+    alert("Item has been successfully edited");
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
