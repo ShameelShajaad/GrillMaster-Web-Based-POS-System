@@ -169,6 +169,47 @@ function deleteItem(itemName, btn) {
 
     console.log("Deleted " + itemName);
 
-    loadAllItems()
+    loadAllItems();
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+function editItem(itemName, btn) {
+  let container = document.getElementById("editItemPopup");
+  container.innerHTML = "";
+
+  let div = document.createElement("div");
+  div.className = "bg-black text-black p-6 rounded-lg w-100 text-white";
+
+  div.innerHTML = `
+    <h2 class="text-xl font-bold mb-4 text-center">Edit Item</h2>
+
+    <input
+      id="itemName"
+      type="text"
+      placeholder="Item Name"
+      class="w-full border p-2 mb-2 border-white focus:outline-none"
+    />
+    <input
+      id="itemPrice"
+      type="text"
+      placeholder="Item Price"
+      class="w-full border p-2 mb-4 border-white focus:outline-none"
+    />
+
+    <button
+      id="saveCustomer"
+      class="bg-[#36E27B] text-black font-semibold w-full py-2 rounded"
+    >
+      Edit
+    </button>
+    `;
+
+  container.appendChild(div);
+  container.style.display = "flex";
+
+  
+}
+
+////////////////////////////////////////////////////////////////////////////////////
