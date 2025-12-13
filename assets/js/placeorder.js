@@ -233,4 +233,6 @@ function orderCompleted() {
   cusName = "";
   cusPhone = "";
   popup.style.display = "flex";
+  document.getElementById("custName").value = "";
+  document.getElementById("custPhone").value = "";
 }
