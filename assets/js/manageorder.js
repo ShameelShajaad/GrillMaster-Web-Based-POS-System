@@ -176,12 +176,14 @@ function deleteItem(itemName, btn) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 let tempItemName;
+let editItemContainer;
 
 function editItem(ItemName, btn) {
   tempItemName = ItemName;
 
   let container = document.getElementById("editItemPopup");
   container.innerHTML = "";
+  editItemContainer = container;
 
   let div = document.createElement("div");
   div.className =
@@ -190,7 +192,7 @@ function editItem(ItemName, btn) {
   div.innerHTML = `
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold text-white">Add a New Item</h2>
-      <button class="">
+      <button class="" onclick="closeEditItem">
         <img
           src="assets/svg/x.svg"
           alt="x_icon"
@@ -238,6 +240,10 @@ function editItem(ItemName, btn) {
       container.style.display = "none";
     }
   });
+}
+
+function closeEditItem() {
+  editItemContainer.style.display = "none";
 }
 
 function editBtn() {
@@ -394,39 +400,59 @@ function addItemBtn() {
 
   if (!itemName || !itemPrice || !addNewItemCategory) {
     alert("Please fill all teh details");
+    return;
   }
 
-  let nextId;
   menuItems.forEach((menuItem) => {
-    if (menuItem.name === itemName) {
+    if (menuItem.name.toLowerCase() === itemName.toLowerCase()) {
       alert("Item Name already exist");
+      return;
     }
-    nextId = menuItem.id;
   });
 
-  if (itemPrice < 0) {
+  if (isNaN(itemPrice) || itemPrice < 0) {
     alert("Price can't be a negative value");
+    return;
   }
 
-  let item = {
-    id: nextId++,
-    name: itemName,
-    price: itemPrice,
-    category: addNewItemCategory,
-    img:
-      addNewItemCategory === "burgers"
-        ? "Default_Burger.png"
-        : addNewItemCategory === "fries"
-        ? "Default_Fries.png"
-        : "Default_Drink.png",
-  };
+  if (/\d/.test(itemName)) {
+    alert("Item Name cannot contain numbers");
+    return;
+  }
 
-  menuItems.push(item);
+  let answer = confirm("Are you sure you want to add this item ?");
 
-  localStorage.setItem("menuItems", JSON.stringify(menuItems));
+  if (answer) {
+    let nextId = menuItems.length
+      ? Math.max(...menuItems.map((item) => item.id)) + 1
+      : 1;
 
-  alert("Item added Successfully");
-  loadAllItems();
+    let item = {
+      id: nextId,
+      name: itemName,
+      price: parseInt(itemPrice),
+      category: addNewItemCategory,
+      img:
+        addNewItemCategory === "burgers"
+          ? "Default_Burger.png"
+          : addNewItemCategory === "fries"
+          ? "Default_Fries.png"
+          : "Default_Drink.png",
+    };
+
+    menuItems.push(item);
+
+    localStorage.setItem("menuItems", JSON.stringify(menuItems));
+
+    alert("Item added Successfully");
+    loadAllItems();
+  } else {
+    alert("Item Cancelled");
+  }
+
+  addNewItemContainer.style.display = "none";
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+console.log(menuItems);
