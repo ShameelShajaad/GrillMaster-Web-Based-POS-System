@@ -184,30 +184,39 @@ function editItem(ItemName, btn) {
   container.innerHTML = "";
 
   let div = document.createElement("div");
-  div.className = "bg-black text-black p-6 rounded-lg w-100 text-white";
+  div.className = "bg-[#112117] border border-white/10 rounded-xl w-[90%] max-w-md p-6";
 
   div.innerHTML = `
-    <h2 class="text-xl font-bold mb-4 text-center">Edit Item</h2>
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-white">Add a New Item</h2>
+      <button class="">
+        <img
+          src="assets/svg/x.svg"
+          alt="x_icon"
+          class="invert brightness-0 filter w-6 h-6"
+        />
+      </button>
+    </div>
 
-    <input
-      id="itemName"
-      type="text"
-      placeholder="Item Name"
-      class="w-full border p-2 mb-2 border-white focus:outline-none"
-    />
-    <input
-      id="itemPrice"
-      type="text"
-      placeholder="Item Price"
-      class="w-full border p-2 mb-4 border-white focus:outline-none"
-    />
-
-    <button
-    onclick="editBtn()"
-      class="bg-[#36E27B] text-black font-semibold w-full py-2 rounded hover:bg-white hover:text-black transition-all"
-    >
-      Edit
-    </button>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm text-white/70 mb-1">Item Name</label>
+        <input
+          id="itemName"
+          type="text"
+          placeholder="e.g. Cheese Burger"
+          class="w-full bg-transparent border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#36E27B]"
+        />
+      </div>
+      <div>
+        <label class="block text-sm text-white/70 mb-1">Price (LKR)</label>
+        <input
+          id="itemPrice"
+          type="number"
+          placeholder="e.g. 1200"
+          class="w-full bg-transparent border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#36E27B]"
+        />
+      </div>
     `;
 
   container.appendChild(div);
