@@ -126,6 +126,10 @@ function renderCart() {
       </button>
       `;
     cartItems.appendChild(cartItem);
+
+    let totalValue = document.getElementById("totalValue");
+
+    totalValue;
   });
 
   cartPanel.querySelectorAll("button[data-action]").forEach((btn) => {
