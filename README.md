@@ -50,12 +50,12 @@ GrillMaster POS is designed for restaurants and fast-food outlets to manage menu
 - **Storage:** Browser `localStorage` for persistence  
 - **Libraries:**  
   - [TailwindCSS](https://tailwindcss.com/) (via CDN)  
-  - [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/) (for potential PDF receipts)  
+  - [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/) (for PDF receipts)  
 
 ---
 
 ## 📂 Project Structure
-
+```bash
 GrillMaster-POS/
 │
 ├── index.html            # Home page
@@ -76,7 +76,7 @@ GrillMaster-POS/
 │
 └── README.md             # Project documentation
 
-
+```
 
 ---
 
