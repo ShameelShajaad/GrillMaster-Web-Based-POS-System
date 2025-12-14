@@ -15,6 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
 let orderID = 0;
 
 function loadAllOrders() {
+  let totalSales = document.getElementById("totalSales");
+  let totalOrders = document.getElementById("totalOrders");
+
+  let sales = 0;
+  let orders = 0;
+
+  completedOrders.forEach((order) => {
+    orders++;
+    sales += order.total;
+  });
+
+  totalSales.innerHTML = "LKR " + sales.toLocaleString();
+  totalOrders.innerHTML=orders
+
+  ////////////////////////////////////////////////////////////////////////////////////
   let container = document.getElementById("order_section");
   container.innerHTML = "";
 
@@ -110,6 +125,14 @@ function viewOrderDetails(button) {
   });
 }
 
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+});
+
 closePopupBtn.addEventListener("click", () => {
   popup.style.display = "none";
 });
+
+////////////////////////////////////////////////////////////////////////////////////
