@@ -574,30 +574,49 @@
 
     <div
       id="customerPopup"
-      class="fixed inset-0 bg-black/60 flex items-center justify-center"
+      class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
     >
-      <div class="bg-white text-black p-6 rounded-lg w-80">
-        <h2 class="text-xl font-bold mb-4">Customer Details</h2>
+      <div
+        class="bg-[#1A1A1A] border border-white/10 rounded-xl w-[90%] max-w-md p-6"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold text-white">Customer Details</h2>
+        </div>
 
-        <input
-          id="custName"
-          type="text"
-          placeholder="Customer Name"
-          class="w-full border p-2 mb-2"
-        />
-        <input
-          id="custPhone"
-          type="text"
-          placeholder="Phone Number"
-          class="w-full border p-2 mb-4"
-        />
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm text-white/70 mb-1"
+              >Customer Name</label
+            >
+            <input
+              id="custName"
+              type="text"
+              placeholder="e.g. James Smith"
+              class="w-full bg-transparent border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-yellow-400"
+            />
+          </div>
 
-        <button
-          id="saveCustomer"
-          class="bg-red-600 text-white w-full py-2 rounded"
-        >
-          Start Order
-        </button>
+          <div>
+            <label class="block text-sm text-white/70 mb-1"
+              >Customer Phone No.</label
+            >
+            <input
+              id="custPhone"
+              type="text"
+              placeholder="e.g. 077 123 4567"
+              class="w-full bg-transparent border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-yellow-400"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button
+            id="saveCustomer"
+            class="flex-1 bg-red-600 text-black font-bold rounded-lg py-2 hover:bg-white transition"
+          >
+            Start Order
+          </button>
+        </div>
       </div>
     </div>
 
