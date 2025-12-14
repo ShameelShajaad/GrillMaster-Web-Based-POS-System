@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <title>View Orders</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -67,7 +67,55 @@
 
     <!-- HERO SECTION -->
 
-    
+    <div class="flex justify-between items-center px-2 md:px-8 py-2">
+      <h1 class="text-2xl pl-4 md:pl-0 font-bold">Order History</h1>
+    </div>
+    <div class="flex flex-col md:flex-row md:items-center">
+      <div class="flex items-center w-full md:w-2/5 lg:w-2/3 px-8 py-2 gap-2">
+        <img
+          src="assets/svg/search.svg"
+          alt="search_icon"
+          class="w-5 h-5 filter brightness-0 invert"
+        />
+        <input
+          type="text"
+          placeholder="Search by Order Number or Customer Name"
+          class="w-full flex-1 border rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none"
+          id="serachBar"
+        />
+      </div>
+    </div>
+
+    <!-- ORDERS LIST -->
+    <section
+      class="px-6 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
+      <div
+        class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-3 hover:border-white/20 hover:bg-white/10 transition-all"
+      >
+        <div class="flex justify-between items-center">
+          <h2 class="font-bold text-lg">Order #1023</h2>
+          <span class="text-sm text-white/60">Completed</span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <p class="text-white/80 text-sm">Classic Beef Burger x2 - LKR 2400</p>
+          <p class="text-white/80 text-sm">Curly Fries x1 - LKR 500</p>
+          <p class="text-white/80 text-sm">Cola Drink x2 - LKR 600</p>
+        </div>
+
+        <div class="flex justify-between items-center mt-2">
+          <span class="font-semibold text-white">Total:</span>
+          <span class="font-bold text-[#FFCC00]">LKR 3500</span>
+        </div>
+
+        <button
+          class="bg-[#f1222d] text-white font-bold py-2 rounded-lg hover:scale-105 active:scale-95 transition-transform mt-2"
+        >
+          View Details
+        </button>
+      </div>
+    </section>
 
     <!-- FOOTER -->
 
