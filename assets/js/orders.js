@@ -30,9 +30,16 @@ function loadAllOrders() {
       } - LKR ${(item.price * item.quantity).toLocaleString()}</p>`;
     });
 
+    if (order.items.length < maxItemsToShow) {
+      let placeholdersNeeded = maxItemsToShow - order.items.length;
+      for (let i = 0; i < placeholdersNeeded; i++) {
+        itemHtml += `<p class="text-white/80 text-sm invisible">Placeholder</p>`;
+      }
+    }
+
     let remainingCount = order.items.length - maxItemsToShow;
-    if(remainingCount>0){
-        itemHtml += `<p class="text-white/80 text-sm">+${remainingCount} more item(s)</p>`;
+    if (remainingCount > 0) {
+      itemHtml += `<p class="text-white/80 text-sm">+${remainingCount} more items</p>`;
     }
 
     let div = document.createElement("div");
