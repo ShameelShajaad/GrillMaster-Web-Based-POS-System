@@ -1,5 +1,11 @@
 console.log("placeorder js loaded!");
 
+////////////////////////////////////////////////////////////////////////////////////
+
+let menuItems = JSON.parse(localStorage.getItem("menuItems")) || [];
+
+////////////////////////////////////////////////////////////////////////////////////
+
 let tabs = document.querySelectorAll(".category-tab");
 let contents = document.querySelectorAll(".menu-content");
 
@@ -84,6 +90,8 @@ function updateCart(btn) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+let total;
+
 cartItems = document.getElementById("cartItems");
 
 function renderCart() {
@@ -116,10 +124,16 @@ function renderCart() {
       <button class="w-4 h-4 md:w-6 md:h-6 lg:w-6 lg:h-6" data-id="${
         item.id
       }" data-action="delete">
-        <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert"/>
+        <img src="assets/svg/trash.svg" alt="minus" class="w-full h-full filter brightness-0 invert" style="filter: invert(65%) sepia(62%) saturate(7475%) hue-rotate(336deg) brightness(97%) contrast(93%); "/>
       </button>
       `;
     cartItems.appendChild(cartItem);
+
+    let totalValue = document.getElementById("totalValue");
+
+    total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    totalValue.innerHTML = total.toLocaleString();
   });
 
   cartPanel.querySelectorAll("button[data-action]").forEach((btn) => {
@@ -218,19 +232,101 @@ let completedOrders = JSON.parse(localStorage.getItem("completedOrders")) || [];
 
 function orderCompleted() {
   let order = {
+    orderID: completedOrders.length+1,
     customerName: cusName,
     customerPhone: cusPhone,
     items: [...cart],
+    total: total,
     date: new Date().toLocaleDateString(),
   };
   console.log(order);
 
   completedOrders.push(order);
-  cart.length = 0;
-  cusName = "";
-  cusPhone = "";
 
   localStorage.setItem("completedOrders", JSON.stringify(completedOrders));
 
+  cart.length = 0;
+  cusName = "";
+  cusPhone = "";
   popup.style.display = "flex";
+  document.getElementById("custName").value = "";
+  document.getElementById("custPhone").value = "";
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+let serachBar = document.getElementById("serachBar");
+
+serachBar.addEventListener("input", () => {
+  let result = serachBar.value.toLowerCase();
+  filterMenuItems(result);
+});
+
+function filterMenuItems(result) {
+  let categories = ["burgers", "fries", "drinks"];
+
+  categories.forEach((category) => {
+    let container = document.getElementById(category);
+    container.innerHTML = "";
+
+    let items = menuItems.filter(
+      (item) =>
+        item.category === category && item.name.toLowerCase().includes(result)
+    );
+
+    items.forEach((item) => {
+      let div = document.createElement("div");
+      div.className =
+        "bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300";
+
+      div.innerHTML = `
+        <div
+            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
+        >
+        <img
+          src="assets/images/${item.img}"
+          alt="${item.name}"
+          class="w-full h-full object-cover"
+        />
+        <button
+          class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
+          data-id="${item.id}"
+          data-name="${item.name}"
+          data-price="${item.price}"
+        >
+        <img
+          src="assets/svg/add_to_cart.svg"
+          alt="add_to_cart_icon"
+          class="w-5 h-5"
+        />
+      </button>
+    </div>
+
+    <p class="text-white font-semibold text-lg text-center">${item.name}</p>
+    <p class="text-gray-400 text-sm text-center">LKR ${item.price.toLocaleString()}</p>
+    `;
+
+      container.appendChild(div);
+    });
+  });
+
+  attachAddtoCartButtons();
+}
+
+function attachAddtoCartButtons() {
+  let addToCartButtons = document.querySelectorAll(
+    ".menu-content button[data-id]"
+  );
+
+  addToCartButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      updateCart(btn);
+      updateCartCount();
+
+      btn.classList.add("scale-110");
+      setTimeout(() => btn.classList.remove("scale-110"), 150);
+    });
+  });
+}
+
+////////////////////////////////////////////////////////////////////////////////////
