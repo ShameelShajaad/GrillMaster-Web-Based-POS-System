@@ -195,8 +195,8 @@ function editItem(ItemName, btn) {
 
   div.innerHTML = `
     <div class="flex justify-between items-center mb-4">
-      <h2 class="text-xl font-bold text-white">Add a New Item</h2>
-      <button class="" onclick="closeEditItem">
+      <h2 class="text-xl font-bold text-white">Edit Item</h2>
+      <button class="cursor-pointer" onclick="closeEditItem()">
         <img
           src="assets/svg/x.svg"
           alt="x_icon"
@@ -298,7 +298,7 @@ function addNewItem() {
   div.innerHTML = `
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold text-white">Add a New Item</h2>
-      <button class="" onclick="closeAddNewItem()">
+      <button class="cursor-pointer" onclick="closeAddNewItem()">
         <img
           src="assets/svg/x.svg"
           alt="x_icon"
@@ -531,5 +531,3 @@ function filterMenuItems(result) {
     });
   });
 }
-
-////////////////////////////////////////////////////////////////////////////////////

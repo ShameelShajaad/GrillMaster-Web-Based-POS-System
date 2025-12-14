@@ -7,7 +7,7 @@ const menuIcon = document.getElementById("menuIcon");
 menuBtn.addEventListener("click", () => {
   menuNav.classList.toggle("hidden");
   const isOpen = !menuNav.classList.contains("hidden");
-  menuBtn.setAttribute("aria-expanded", isOpen);
+  menuBtn.setAttribute("aria-expanded", isOpen); 
 
   menuIcon.innerHTML = isOpen
     ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

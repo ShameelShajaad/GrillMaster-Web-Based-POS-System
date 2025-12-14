@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order</title>
+    <title>Place Order</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -143,316 +143,21 @@
       <div
         id="burgers"
         class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <!-- BURGER 01 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Classic_Beef_Burger.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="1"
-              data-name="Classic Beef Burger"
-              data-price="1200"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Classic Beef Burger
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 1,200</p>
-        </div>
-
-        <!-- BURGER 02 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Double_Cheese_Burger.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="2"
-              data-name="Double Cheese Burger"
-              data-price="1350"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Double Cheese Burger
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 1,350</p>
-        </div>
-
-        <!-- BURGER 03 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Chicken_Crispy_Burger.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="3"
-              data-name="Chicken Crispy Burger"
-              data-price="1100"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Chicken Crispy Burger
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 1,100</p>
-        </div>
-      </div>
+      ></div>
 
       <!-- FRIES -->
 
       <div
         id="fries"
         class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <!-- FRIES 01 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Classic_French_Fries.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="16"
-              data-name="Classic French Fries"
-              data-price="450"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Classic French Fries
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 450</p>
-        </div>
-
-        <!-- FRIES 02 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Curly_Fries.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="17"
-              data-name="Curly Fries"
-              data-price="500"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Curly Fries
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 500</p>
-        </div>
-
-        <!-- FRIES 03 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Cheese_Fries.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="18"
-              data-name="Cheese Fries"
-              data-price="600"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Cheese Fries
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 600</p>
-        </div>
-      </div>
+      ></div>
 
       <!-- DRINKS -->
 
       <div
         id="drinks"
         class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <!-- DRINKS 01 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Cola_Drink.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="27"
-              data-name="Cola Drink"
-              data-price="300"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">Cola Drink</p>
-          <p class="text-gray-400 text-sm text-center">LKR 300</p>
-        </div>
-
-        <!-- DRINKS 02 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Orange_Juice.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="28"
-              data-name="Orange Juice"
-              data-price="350"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Orange Juice
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 350</p>
-        </div>
-
-        <!-- DRINKS 03 -->
-
-        <div
-          class="bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
-        >
-          <div
-            class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
-          >
-            <img
-              src="assets/images/Chocolate_Milkshake.png"
-              alt="Classic Beef Burger"
-              class="w-full h-full object-cover"
-            />
-            <button
-              class="absolute bottom-2 right-2 w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-yellow-500 transition-colors"
-              data-id="29"
-              data-name="Chocolate Milkshake"
-              data-price="500"
-            >
-              <img
-                src="assets/svg/add_to_cart.svg"
-                alt="add_to_cart_icon"
-                class="w-5 h-5"
-              />
-            </button>
-          </div>
-
-          <p class="text-white font-semibold text-lg text-center">
-            Chocolate Milkshake
-          </p>
-          <p class="text-gray-400 text-sm text-center">LKR 500</p>
-        </div>
-      </div>
+      ></div>
     </div>
 
     <!-- FOOTER -->
@@ -520,11 +225,11 @@
     <!-- ////////////////////////////////////////////////////////// -->
 
     <div
-      class="hidden fixed py-30 top-0 right-0 w-95 md:w-130 lg:w-150 h-160 bg-[#2C2C2C] shadow-lg p-4 overflow-y-auto border-x-4 border-b-4 border-yellow-400"
+      class="hidden fixed py-30 top-0 right-0 w-90 md:w-130 lg:w-150 h-160 bg-[#2C2C2C] shadow-lg p-4 overflow-y-auto border-x-4 border-b-4 border-yellow-400"
       id="cartPanel"
     >
       <h2
-        class="text-xl font-bold mb-4 text-center text-yellow-400 border-b border-white pb-2"
+        class="md:text-xl text-sm font-bold mb-4 text-center text-yellow-400 border-b border-white pb-2"
       >
         Your Cart
       </h2>
