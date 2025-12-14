@@ -92,6 +92,31 @@
       id="order_section"
     ></section>
 
+    <!-- ORDERS POPUP -->
+
+    <div
+      id="orderPopup"
+      class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+    >
+      <div class="bg-[#2C2C2C] p-6 rounded-lg w-[90%] max-w-lg relative">
+        <button
+          id="closeOrderPopup"
+          class="absolute top-2 right-2 text-white text-xl font-bold"
+        >
+          <img
+            src="assets/svg/x.svg"
+            alt="x_icon"
+            class="invert brightness-0 filter w-6 h-6"
+          />
+        </button>
+        <h2 id="popupOrderTitle" class="font-bold text-xl text-white mb-2"></h2>
+        <p id="popupCustomer" class="text-white mb-1"></p>
+        <p id="popupDate" class="text-white mb-2"></p>
+        <div id="popupItems" class="flex flex-col gap-1 mb-2"></div>
+        <p id="popupTotal" class="font-bold text-[#FFCC00] text-lg"></p>
+      </div>
+    </div>
+
     <!-- FOOTER -->
 
     <footer

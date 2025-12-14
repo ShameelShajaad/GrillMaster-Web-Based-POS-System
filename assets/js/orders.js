@@ -12,17 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+let orderID = 0;
+
 function loadAllOrders() {
   let container = document.getElementById("order_section");
   container.innerHTML = "";
 
   completedOrders.forEach((order) => {
+    orderID = orderID + 1;
+
     let itemHtml = "";
-    order.items.forEach((item) => {
+    maxItemsToShow = 2;
+
+    order.items.slice(0, maxItemsToShow).forEach((item) => {
       itemHtml += `<p class="text-white/80 text-sm">${item.name} x${
         item.quantity
       } - LKR ${(item.price * item.quantity).toLocaleString()}</p>`;
     });
+
+    let remainingCount = order.items.length - maxItemsToShow;
+    if(remainingCount>0){
+        itemHtml += `<p class="text-white/80 text-sm">+${remainingCount} more item(s)</p>`;
+    }
 
     let div = document.createElement("div");
     div.className =
@@ -30,7 +41,7 @@ function loadAllOrders() {
 
     div.innerHTML = `
     <div class="flex justify-between items-center">
-        <h2 class="font-bold text-lg">Order #</h2>
+        <h2 class="font-bold text-lg">Order #${orderID}</h2>
         <span class="text-sm text-white/60">Completed</span>
     </div>
 
