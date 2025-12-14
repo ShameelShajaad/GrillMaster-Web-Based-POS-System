@@ -18,7 +18,7 @@ function loadAllOrders() {
   let container = document.getElementById("order_section");
   container.innerHTML = "";
 
-  completedOrders.forEach((order) => {
+  completedOrders.forEach((order, index) => {
     orderID = orderID + 1;
 
     let itemHtml = "";
@@ -63,6 +63,8 @@ function loadAllOrders() {
 
     <button
       class="bg-[#f1222d] text-white font-bold py-2 rounded-lg hover:scale-105 active:scale-95 transition-transform mt-2"
+        data-index="${index}"
+        onclick="viewOrderDetails(this)"
     >
         View Details
     </button>
@@ -73,3 +75,41 @@ function loadAllOrders() {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+let popup = document.getElementById("orderPopup");
+let closePopupBtn = document.getElementById("closeOrderPopup");
+
+let popupOrderTitle = document.getElementById("popupOrderTitle");
+let popupCustomer = document.getElementById("popupCustomer");
+let popupDate = document.getElementById("popupDate");
+let popupItems = document.getElementById("popupItems");
+let popupTotal = document.getElementById("popupTotal");
+
+function viewOrderDetails(button) {
+  let orderIndex = button.dataset.index;
+  let order = completedOrders[orderIndex];
+
+  orderIndex++;
+  popup.style.display = "flex";
+
+  popupOrderTitle.innerHTML = "#" + orderIndex;
+  popupCustomer.innerHTML = order.customerName;
+  popupDate.innerHTML = order.date;
+  popupTotal.innerHTML = "LKR " + order.total.toLocaleString();
+
+  popupItems.innerHTML = "";
+
+  order.items.forEach((item) => {
+    let p = document.createElement("p");
+    p.className = "text-white/80 text-sm";
+    p.innerHTML = `${item.name} x ${item.quantity} - LKR ${(
+      item.price * item.quantity
+    ).toLocaleString()}`;
+
+    popupItems.appendChild(p);
+  });
+}
+
+closePopupBtn.addEventListener("click", () => {
+  popup.style.display = "none";
+});
