@@ -232,6 +232,7 @@ let completedOrders = JSON.parse(localStorage.getItem("completedOrders")) || [];
 
 function orderCompleted() {
   let order = {
+    orderID: completedOrders.length+1,
     customerName: cusName,
     customerPhone: cusPhone,
     items: [...cart],
