@@ -26,7 +26,7 @@ function loadAllOrders() {
     sales += order.total;
   });
 
-  totalSales.innerHTML = "LKR " + (sales).toLocaleString();
+  totalSales.innerHTML = "LKR " + sales.toLocaleString();
   totalOrders.innerHTML = orders;
 
   ////////////////////////////////////////////////////////////////////////////////////

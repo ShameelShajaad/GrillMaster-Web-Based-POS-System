@@ -351,7 +351,7 @@ function loadMenuItems() {
       div.className =
         "bg-[#2C2C2C] rounded-xl p-4 flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300";
 
-      div.innerHTML=`
+      div.innerHTML = `
           <div
             class="relative w-full h-70 md:h-80 lg:h-80 rounded-lg overflow-hidden"
           >
@@ -386,5 +386,3 @@ function loadMenuItems() {
 
   attachAddtoCartButtons();
 }
-
-////////////////////////////////////////////////////////////////////////////////////
