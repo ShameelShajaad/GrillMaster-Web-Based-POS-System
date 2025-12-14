@@ -17,13 +17,12 @@ function loadAllOrders() {
   container.innerHTML = "";
 
   completedOrders.forEach((order) => {
-
-    let itemHtml
-    order.forEach((item)=>{
-        itemHtml+=`<p class="text-white/80 text-sm">${item.name} x${item.quantity} - LKR ${(item.price*item.quantity).toLocaleString()}</p>`
-    })
-
-    let toa
+    let itemHtml = "";
+    order.items.forEach((item) => {
+      itemHtml += `<p class="text-white/80 text-sm">${item.name} x${
+        item.quantity
+      } - LKR ${(item.price * item.quantity).toLocaleString()}</p>`;
+    });
 
     let div = document.createElement("div");
     div.className =
@@ -36,14 +35,12 @@ function loadAllOrders() {
     </div>
 
     <div class="flex flex-col gap-1">
-        <p class="text-white/80 text-sm">Classic Beef Burger x2 - LKR 2400</p>
-        <p class="text-white/80 text-sm">Curly Fries x1 - LKR 500</p>
-        <p class="text-white/80 text-sm">Cola Drink x2 - LKR 600</p>
+        ${itemHtml}
     </div>
 
     <div class="flex justify-between items-center mt-2">
       <span class="font-semibold text-white">Total:</span>
-      <span class="font-bold text-[#FFCC00]">LKR 3500</span>
+      <span class="font-bold text-[#FFCC00]">LKR ${order.total.toLocaleString()}</span>
     </div>
 
     <button
@@ -52,9 +49,9 @@ function loadAllOrders() {
         View Details
     </button>
     `;
-  });
 
-  container.appendChild(div);
+    container.appendChild(div);
+  });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

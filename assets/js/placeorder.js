@@ -90,6 +90,8 @@ function updateCart(btn) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+let total;
+
 cartItems = document.getElementById("cartItems");
 
 function renderCart() {
@@ -129,7 +131,9 @@ function renderCart() {
 
     let totalValue = document.getElementById("totalValue");
 
-    totalValue;
+    total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    totalValue.innerHTML = total.toLocaleString();
   });
 
   cartPanel.querySelectorAll("button[data-action]").forEach((btn) => {
@@ -231,6 +235,7 @@ function orderCompleted() {
     customerName: cusName,
     customerPhone: cusPhone,
     items: [...cart],
+    total: total,
     date: new Date().toLocaleDateString(),
   };
   console.log(order);
