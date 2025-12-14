@@ -273,9 +273,13 @@ function editBtn() {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+let addNewItemContainer;
+let addNewItemCategory;
+
 function addNewItem() {
   let container = document.getElementById("addItemPopup");
   container.innerHTML = "";
+  addNewItemContainer = container;
 
   let div = document.createElement("div");
   div.className =
@@ -284,7 +288,7 @@ function addNewItem() {
   div.innerHTML = `
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold text-white">Add a New Item</h2>
-      <button class="">
+      <button class="" onclick="closeAddNewItem()">
         <img
           src="assets/svg/x.svg"
           alt="x_icon"
@@ -318,16 +322,19 @@ function addNewItem() {
             <div class="flex gap-2">
               <button
                 class="category-btn flex-1 border border-white/20 rounded-lg py-2 hover:bg-[#36E27B] hover:text-black transition"
+                data-cat="burgers"
               >
                 Burgers
               </button>
               <button
                 class="category-btn flex-1 border border-white/20 rounded-lg py-2 hover:bg-[#36E27B] hover:text-black transition"
+                data-cat="fries"
               >
                 Fries
               </button>
               <button
                 class="category-btn flex-1 border border-white/20 rounded-lg py-2 hover:bg-[#36E27B] hover:text-black transition"
+                data-cat="drinks"
               >
                 Drinks
               </button>
@@ -337,13 +344,13 @@ function addNewItem() {
 
         <div class="flex gap-3 mt-6">
           <button
-            onclick="closeAddItem()"
+            onclick="closeAddNewItem()"
             class="flex-1 border border-white/20 text-white rounded-lg py-2 hover:bg-white/10 transition"
           >
             Cancel
           </button>
           <button
-            onclick="addItem()"
+            onclick="addItemBtn()"
             class="flex-1 bg-[#36E27B] text-black font-bold rounded-lg py-2 hover:bg-white transition"
           >
             Add Item
@@ -353,6 +360,73 @@ function addNewItem() {
 
   container.appendChild(div);
   container.style.display = "flex";
+
+  container.addEventListener("click", (e) => {
+    if (e.target === container) {
+      container.style.display = "none";
+    }
+  });
+
+  let categoryBtns = document.querySelectorAll(".category-btn");
+
+  categoryBtns.forEach((categoryBtn) => {
+    categoryBtn.addEventListener("click", () => {
+      categoryBtns.forEach((btn) => {
+        btn.classList.remove("bg-[#36E27B]", "text-black");
+        btn.classList.add("text-white", "bg-transparent");
+      });
+
+      categoryBtn.classList.remove("text-white", "bg-transparent");
+      categoryBtn.classList.add("bg-[#36E27B]", "text-black");
+
+      addNewItemCategory = categoryBtn.dataset.cat;
+    });
+  });
+}
+
+function closeAddNewItem() {
+  addNewItemContainer.style.display = "none";
+}
+
+function addItemBtn() {
+  let itemName = document.getElementById("itemName").value.trim();
+  let itemPrice = document.getElementById("itemPrice").value.trim();
+
+  if (!itemName || !itemPrice || !addNewItemCategory) {
+    alert("Please fill all teh details");
+  }
+
+  let nextId;
+  menuItems.forEach((menuItem) => {
+    if (menuItem.name === itemName) {
+      alert("Item Name already exist");
+    }
+    nextId = menuItem.id;
+  });
+
+  if (itemPrice < 0) {
+    alert("Price can't be a negative value");
+  }
+
+  let item = {
+    id: nextId++,
+    name: itemName,
+    price: itemPrice,
+    category: addNewItemCategory,
+    img:
+      addNewItemCategory === "burgers"
+        ? "Default_Burger.png"
+        : addNewItemCategory === "fries"
+        ? "Default_Fries.png"
+        : "Default_Drink.png",
+  };
+
+  menuItems.push(item);
+
+  localStorage.setItem("menuItems", JSON.stringify(menuItems));
+
+  alert("Item added Successfully");
+  loadAllItems();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
