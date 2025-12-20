@@ -262,7 +262,7 @@ async function printBill() {
   link.href = URL.createObjectURL(blob);
   link.download = `GrillMaster Bill - ${
     document.getElementById("custName").value
-  }.pdf`;
+  } (${new Date().toLocaleDateString()}).pdf`;
   link.click();
 
   billDiv.style.opacity = 0;
