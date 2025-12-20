@@ -98,7 +98,7 @@ function updateCart(btn) {
 
 let total;
 
-cartItems = document.getElementById("cartItems");
+let cartItems = document.getElementById("cartItems");
 
 function renderCart() {
   cartItems.innerHTML = "";
@@ -198,77 +198,75 @@ downloadPdfBtn.addEventListener("click", () => {
   }
 });
 
-function printBill() {
-  let customerName = document.getElementById("custName").value;
-  let customerPhone = document.getElementById("custPhone").value;
-  let date = new Date().toLocaleString();
+async function printBill() {
+  let billDiv = document.getElementById("bill");
 
-  let container = document.getElementById("bill");
-  let billDate = document.getElementById("billDate");
-  let billCustomerName = document.getElementById("billCustomerName");
-  let billCustomerPhone = document.getElementById("billCustomerPhone");
-  let billItemsBody = document.getElementById("billItemsBody");
-  let billSubtotal = document.getElementById("billSubtotal");
-  let billTax = document.getElementById("billTax");
-  let billTotal = document.getElementById("billTotal");
+  document.getElementById("billCustomerName").textContent =
+    document.getElementById("custName").value || "Guest";
+  document.getElementById("billCustomerPhone").textContent =
+    document.getElementById("custPhone").value || "N/A";
+  document.getElementById("billDate").textContent = new Date().toLocaleString();
 
-  billDate.innerHTML = date;
-  billCustomerName.innerHTML = customerName;
-  billCustomerPhone.innerHTML = customerPhone;
+  let tbody = document.getElementById("billItemsBody");
+  tbody.innerHTML = "";
 
-  billItemsBody.innerHTML = "";
   let subTotal = 0;
-
   cart.forEach((item) => {
-    let total = item.price * item.quantity;
+    let total = parseFloat(item.price * item.quantity);
     subTotal += total;
 
-    let row = document.createElement("tr");
-    row.classList.add("border-b");
-
-    row.innerHTML = `
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
       <td class="border px-2 py-1">${item.name}</td>
       <td class="border px-2 py-1 text-center">${item.quantity}</td>
-      <td class="border px-2 py-1 text-right">LKR ${item.price.toLocaleString(
-        undefined,
-        { minimumFractionDigits: 2, maximumFractionDigits: 2 }
-      )}</td>
+      <td class="border px-2 py-1 text-right">LKR ${item.price.toLocaleString()}</td>
       <td class="border px-2 py-1 text-right">LKR ${(
         item.price * item.quantity
-      ).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}</td>
-
+      ).toLocaleString()}</td>
     `;
-
-    billItemsBody.appendChild(row);
+    tbody.appendChild(tr);
   });
 
   let tax = subTotal * 0.08;
-  let totalAmount = subTotal + tax;
+  let total = subTotal + tax;
 
-  billSubtotal.innerHTML = `LKR ${subTotal.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
-  billTax.innerHTML = `LKR ${tax.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
-  billTotal.innerHTML = `LKR ${totalAmount.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
+  document.getElementById(
+    "billSubtotal"
+  ).textContent = `LKR ${subTotal.toLocaleString()}`;
+  document.getElementById(
+    "billTax"
+  ).textContent = `LKR ${tax.toLocaleString()}`;
+  document.getElementById(
+    "billTotal"
+  ).textContent = `LKR ${total.toLocaleString()}`;
 
-  const options = {
-    margin: 10,
-    filename: "GrillMaster Bill - " + customerName + " (" + date + ")",
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-  };
+  billDiv.style.opacity = 1;
+  billDiv.style.pointerEvents = "auto";
 
-  html2pdf().from(bill).set(options).save();
+  const canvas = await html2canvas(billDiv, { scale: 2 });
+  const imgData = canvas.toDataURL("image/png");
+
+  const pdfDoc = await PDFLib.PDFDocument.create();
+  const page = pdfDoc.addPage([canvas.width, canvas.height]);
+  const pngImage = await pdfDoc.embedPng(imgData);
+  page.drawImage(pngImage, {
+    x: 0,
+    y: 0,
+    width: canvas.width,
+    height: canvas.height,
+  });
+
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `GrillMaster Bill - ${
+    document.getElementById("custName").value
+  }.pdf`;
+  link.click();
+
+  billDiv.style.opacity = 0;
+  billDiv.style.pointerEvents = "none";
 }
 
 completeOrderBtn.addEventListener("click", () => {
