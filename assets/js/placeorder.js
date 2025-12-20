@@ -187,14 +187,89 @@ cartPanel.addEventListener("click", (e) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// let downloadPdfBtn = document.getElementById("downloadPdfBtn");
+let downloadPdfBtn = document.getElementById("downloadPdfBtn");
 let completeOrderBtn = document.getElementById("completeOrderBtn");
 
-// downloadPdfBtn.addEventListener("click", () => {
-//   if (cart.length === 0) {
-//     alert("Cart is empty");
-//   }
-// });
+downloadPdfBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+  } else {
+    printBill();
+  }
+});
+
+function printBill() {
+  let customerName = document.getElementById("custName").value;
+  let customerPhone = document.getElementById("custPhone").value;
+  let date = new Date().toLocaleString();
+
+  let container = document.getElementById("bill");
+  let billDate = document.getElementById("billDate");
+  let billCustomerName = document.getElementById("billCustomerName");
+  let billCustomerPhone = document.getElementById("billCustomerPhone");
+  let billItemsBody = document.getElementById("billItemsBody");
+  let billSubtotal = document.getElementById("billSubtotal");
+  let billTax = document.getElementById("billTax");
+  let billTotal = document.getElementById("billTotal");
+
+  billDate.innerHTML = date;
+  billCustomerName.innerHTML = customerName;
+  billCustomerPhone.innerHTML = customerPhone;
+
+  billItemsBody.innerHTML = "";
+  let subTotal = 0;
+
+  cart.forEach((item) => {
+    let total = item.price * item.quantity;
+    subTotal += total;
+
+    let row = document.createElement("tr");
+    row.classList.add("border-b");
+
+    row.innerHTML = `
+      <td class="border px-2 py-1">${item.name}</td>
+      <td class="border px-2 py-1 text-center">${item.quantity}</td>
+      <td class="border px-2 py-1 text-right">LKR ${item.price.toLocaleString(
+        undefined,
+        { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+      )}</td>
+      <td class="border px-2 py-1 text-right">LKR ${(
+        item.price * item.quantity
+      ).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}</td>
+
+    `;
+
+    billItemsBody.appendChild(row);
+  });
+
+  let tax = subTotal * 0.08;
+  let totalAmount = subTotal + tax;
+
+  billSubtotal.innerHTML = `LKR ${subTotal.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+  billTax.innerHTML = `LKR ${tax.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+  billTotal.innerHTML = `LKR ${totalAmount.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+
+  const options = {
+    margin: 10,
+    filename: "GrillMaster Bill - " + customerName + " (" + date + ")",
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
+
+  html2pdf().from(bill).set(options).save();
+}
 
 completeOrderBtn.addEventListener("click", () => {
   if (cart.length === 0) {
