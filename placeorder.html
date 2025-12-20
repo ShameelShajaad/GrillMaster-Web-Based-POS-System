@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Place Order</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -47,7 +46,8 @@
         <button id="menuBtn" class="text-white focus:outline-none">
           <img
             src="assets/svg/menu_icon.svg"
-            alt="menu_icon"
+            alt="menuIcon"
+            id="menuIcon"
             class="h-8 w-8 filter brightness-0 invert"
           />
         </button>
@@ -56,17 +56,17 @@
       <!-- NAV -->
       <nav
         id="mobileMenu"
-        class="absolute md:static left-0 top-full w-full md:w-auto bg-[#1A1A1A] md:bg-transparent hidden md:flex flex-col md:flex-row items-center gap-6 px-6 py-4 md:p-0 z-40"
+        class="absolute md:static left-0 top-full w-full md:w-auto bg-[#221011] md:bg-transparent hidden md:flex flex-col md:flex-row items-center gap-6 px-6 py-4 md:p-0 z-40"
       >
         <a
           href="index.html"
-          class="hover:text-white text-white/80 transition py-2"
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
           >Home</a
         >
 
         <a
           href="placeorder.html"
-          class="hover:text-white text-white/80 transition py-2"
+          class="hover:text-white text-white/80 transition block md:inline-block py-2"
           >New Order</a
         >
         <a
@@ -253,12 +253,12 @@
             LKR 0
           </h3>
         </div>
-        <!-- <button
+        <button
           class="bg-yellow-400 text-black py-2 rounded hover:bg-yellow-500 transition-colors"
           id="downloadPdfBtn"
         >
           Download as PDF
-        </button> -->
+        </button>
         <button
           class="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition-colors"
           id="completeOrderBtn"
@@ -272,10 +272,92 @@
 
     <!-- BILL SECTION -->
 
-    <!-- <div id="bill">
-      <img src="assets/images/grill_master_logo.png">
-      <h2>GrillMaster POS Bill</h2>
-    </div> -->
+    <div
+      id="bill"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 210mm;
+        min-height: 297mm;
+        font-family: sans-serif;
+        background: #ffffff;
+        padding: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        color: #000;
+      "
+    >
+      <!-- Header -->
+      <div style="text-align: center; margin-bottom: 24px">
+        <img
+          src="assets/images/grill_master_logo.png"
+          alt="GrillMaster Logo"
+          style="display: block; margin: 0 auto 8px; width: 96px"
+        />
+        <h2 style="font-size: 24px; font-weight: bold; margin: 0">
+          GrillMaster POS Bill
+        </h2>
+        <p style="font-size: 12px; margin-top: 4px">
+          Date: <span id="billDate"></span>
+        </p>
+        <p style="font-size: 12px">
+          Customer: <span id="billCustomerName"></span>
+        </p>
+        <p style="font-size: 12px">
+          Phone: <span id="billCustomerPhone"></span>
+        </p>
+      </div>
+
+      <!-- Items Table -->
+      <table
+        style="width: 100%; border: 1px solid #000; border-collapse: collapse"
+      >
+        <thead>
+          <tr style="background: #e5e5e5">
+            <th style="border: 1px solid #000; padding: 4px; text-align: left">
+              Item
+            </th>
+            <th
+              style="border: 1px solid #000; padding: 4px; text-align: center"
+            >
+              Qty
+            </th>
+            <th style="border: 1px solid #000; padding: 4px; text-align: right">
+              Price
+            </th>
+            <th style="border: 1px solid #000; padding: 4px; text-align: right">
+              Total
+            </th>
+          </tr>
+        </thead>
+        <tbody id="billItemsBody"></tbody>
+      </table>
+
+      <!-- Summary -->
+      <div style="margin-top: 24px; text-align: right; line-height: 1.5">
+        <p>Subtotal: <span id="billSubtotal"></span></p>
+        <p>Tax (8%): <span id="billTax"></span></p>
+        <h3 style="font-size: 20px; font-weight: bold">
+          Total: <span id="billTotal"></span>
+        </h3>
+      </div>
+
+      <p style="text-align: center; margin-top: 48px; font-size: 12px">
+        Thank you for ordering at GrillMaster!
+      </p>
+      <p
+        style="
+          text-align: center;
+          margin-top: 8px;
+          font-size: 10px;
+          color: #666;
+        "
+      >
+        © 2025 Developed by Shameel Shajaad
+      </p>
+    </div>
 
     <!-- ////////////////////////////////////////////////////////// -->
 
@@ -336,7 +418,10 @@
 
     <!-- ////////////////////////////////////////////////////////// -->
 
+    <script src="assets/js/data.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
     <script src="assets/js/placeorder.js"></script>
   </body>
 </html>

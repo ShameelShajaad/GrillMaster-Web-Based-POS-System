@@ -98,7 +98,7 @@ function updateCart(btn) {
 
 let total;
 
-cartItems = document.getElementById("cartItems");
+let cartItems = document.getElementById("cartItems");
 
 function renderCart() {
   cartItems.innerHTML = "";
@@ -187,14 +187,87 @@ cartPanel.addEventListener("click", (e) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// let downloadPdfBtn = document.getElementById("downloadPdfBtn");
+let downloadPdfBtn = document.getElementById("downloadPdfBtn");
 let completeOrderBtn = document.getElementById("completeOrderBtn");
 
-// downloadPdfBtn.addEventListener("click", () => {
-//   if (cart.length === 0) {
-//     alert("Cart is empty");
-//   }
-// });
+downloadPdfBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+  } else {
+    printBill();
+  }
+});
+
+async function printBill() {
+  let billDiv = document.getElementById("bill");
+
+  document.getElementById("billCustomerName").textContent =
+    document.getElementById("custName").value || "Guest";
+  document.getElementById("billCustomerPhone").textContent =
+    document.getElementById("custPhone").value || "N/A";
+  document.getElementById("billDate").textContent = new Date().toLocaleString();
+
+  let tbody = document.getElementById("billItemsBody");
+  tbody.innerHTML = "";
+
+  let subTotal = 0;
+  cart.forEach((item) => {
+    let total = parseFloat(item.price * item.quantity);
+    subTotal += total;
+
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="border px-2 py-1">${item.name}</td>
+      <td class="border px-2 py-1 text-center">${item.quantity}</td>
+      <td class="border px-2 py-1 text-right">LKR ${item.price.toLocaleString()}</td>
+      <td class="border px-2 py-1 text-right">LKR ${(
+        item.price * item.quantity
+      ).toLocaleString()}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  let tax = subTotal * 0.08;
+  let total = subTotal + tax;
+
+  document.getElementById(
+    "billSubtotal"
+  ).textContent = `LKR ${subTotal.toLocaleString()}`;
+  document.getElementById(
+    "billTax"
+  ).textContent = `LKR ${tax.toLocaleString()}`;
+  document.getElementById(
+    "billTotal"
+  ).textContent = `LKR ${total.toLocaleString()}`;
+
+  billDiv.style.opacity = 1;
+  billDiv.style.pointerEvents = "auto";
+
+  const canvas = await html2canvas(billDiv, { scale: 2 });
+  const imgData = canvas.toDataURL("image/png");
+
+  const pdfDoc = await PDFLib.PDFDocument.create();
+  const page = pdfDoc.addPage([canvas.width, canvas.height]);
+  const pngImage = await pdfDoc.embedPng(imgData);
+  page.drawImage(pngImage, {
+    x: 0,
+    y: 0,
+    width: canvas.width,
+    height: canvas.height,
+  });
+
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `GrillMaster Bill - ${
+    document.getElementById("custName").value
+  } (${new Date().toLocaleDateString()}).pdf`;
+  link.click();
+
+  billDiv.style.opacity = 0;
+  billDiv.style.pointerEvents = "none";
+}
 
 completeOrderBtn.addEventListener("click", () => {
   if (cart.length === 0) {

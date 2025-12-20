@@ -1,6 +1,6 @@
 console.log("data js loaded!");
 
-const menuVersion = "1.1";
+const menuVersion = "1.2";
 
 const defaultMenu = [
   {
@@ -257,10 +257,80 @@ const defaultMenu = [
   },
   {
     id: 37,
-    name: "Tropical_Fizz",
+    name: "Tropical Fizz",
     price: 500,
     category: "drinks",
     img: "Tropical_Fizz.png",
+  },
+  {
+    id: 38,
+    name: "Pepper Jack Smash Burger",
+    price: 1280,
+    category: "burgers",
+    img: "Pepper_Jack_Smash_Burger.png",
+  },
+  {
+    id: 39,
+    name: "Honey Glazed Chicken Burger",
+    price: 1180,
+    category: "burgers",
+    img: "Honey_Glazed_Chicken_Burger.png",
+  },
+  {
+    id: 40,
+    name: "Mediterranean Lamb Burger",
+    price: 1450,
+    category: "burgers",
+    img: "Mediterranean_Lamb_Burger.png",
+  },
+  {
+    id: 41,
+    name: "Crispy Fish Fillet Burger",
+    price: 1150,
+    category: "burgers",
+    img: "Crispy_Fish_Fillet_Burger.png",
+  },
+  {
+    id: 42,
+    name: "Butter Masala Fries",
+    price: 620,
+    category: "fries",
+    img: "Butter_Masala_Fries.png",
+  },
+  {
+    id: 43,
+    name: "Smoky Paprika Fries",
+    price: 520,
+    category: "fries",
+    img: "Smoky_Paprika_Fries.png",
+  },
+  {
+    id: 44,
+    name: "Creamy Ranch Fries",
+    price: 580,
+    category: "fries",
+    img: "Creamy_Ranch_Fries.png",
+  },
+  {
+    id: 45,
+    name: "Vanilla Cold Brew",
+    price: 480,
+    category: "drinks",
+    img: "Vanilla_Cold_Brew.png",
+  },
+  {
+    id: 46,
+    name: "Peach Iced Tea",
+    price: 420,
+    category: "drinks",
+    img: "Peach_Iced_Tea.png",
+  },
+  {
+    id: 47,
+    name: "Chocolate Frappe",
+    price: 550,
+    category: "drinks",
+    img: "Chocolate_Frappe.png",
   },
 ];
 
